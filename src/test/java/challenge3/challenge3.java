@@ -1,4 +1,4 @@
-package challenge2;
+package challenge3;
 
 
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import pagesObject.homePage;
 
-public class challenge2 {
+public class challenge3 {
     public WebDriver driver;
 
     @BeforeSuite
@@ -23,6 +23,9 @@ public class challenge2 {
     public void startClass() throws Exception{
         System.setProperty("webdriver.chrome.driver", "./bin/chromedriver.exe");
         driver =  new ChromeDriver();
+        driver.manage().window().maximize();
+
+
     }
 
     @AfterClass
@@ -41,8 +44,9 @@ public class challenge2 {
     public void goToGoogle() throws Exception{
         driver.get("https://www.copart.com/");
         homePage homePageObj = new homePage(driver);
-        String car = homePageObj.GetIfCarAvailable("exotics");
-        Assert.assertEquals(car, "PORSCHE");
+        homePageObj.getPopularItems();
+
+
 
     }
 

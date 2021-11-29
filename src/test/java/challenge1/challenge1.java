@@ -39,8 +39,6 @@ public class challenge1 {
     @Test()
     public void goToGoogle() throws Exception{
         driver.get("https://www.google.com");
-        String test = System.getenv("CYBERSOURCE_MERCHANT");
-        System.out.print(test);
     }
 
     @Test()
