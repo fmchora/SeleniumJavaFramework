@@ -23,6 +23,7 @@ public class challenge2 {
     public void startClass() throws Exception{
         System.setProperty("webdriver.chrome.driver", "./bin/chromedriver.exe");
         driver =  new ChromeDriver();
+        driver.manage().window().maximize();
     }
 
     @AfterClass
@@ -38,11 +39,12 @@ public class challenge2 {
     public void afterMethod(){
     }
     @Test()
-    public void goToGoogle() throws Exception{
+    public void challenge2() throws Exception{
         driver.get("https://www.copart.com/");
         homePage homePageObj = new homePage(driver);
         String car = homePageObj.GetIfCarAvailable("exotics");
-        Assert.assertEquals(car, "PORSCHE");
+        System.out.println("Car returned from exotics search" + ": " + car);
+        Assert.assertTrue(car.contains( "PORSCHE"));
 
     }
 

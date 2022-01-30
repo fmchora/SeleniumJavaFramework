@@ -41,7 +41,7 @@ public class challenge3 {
     public void afterMethod(){
     }
     @Test()
-    public void goToGoogle() throws Exception{
+    public void Challenge3() throws Exception{
         driver.get("https://www.copart.com/");
         homePage homePageObj = new homePage(driver);
         homePageObj.getPopularItems();
