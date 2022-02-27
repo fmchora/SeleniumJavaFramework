@@ -1,4 +1,4 @@
-package challenge6;
+package challenge7;
 
 
 import org.openqa.selenium.WebDriver;
@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import pagesObject.homePage;
 
-public class challenge6 {
+public class challenge7 {
     public WebDriver driver;
 
     @BeforeSuite
@@ -40,12 +40,10 @@ public class challenge6 {
     public void afterMethod(){
     }
     @Test()
-    public void Challenge6() throws Exception{
+    public void Challenge7() throws Exception{
         driver.get("https://www.copart.com/");
         homePage homePageObj = new homePage(driver);
-        homePageObj.searchCar("nissan");
-        homePageObj.trySearchFilterModel("skyline");
-
+        homePageObj.validateMakesModels();
 
 
 

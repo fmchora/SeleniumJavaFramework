@@ -1,4 +1,4 @@
-package Challenge5;
+package challenge5;
 
 
 import org.openqa.selenium.WebDriver;

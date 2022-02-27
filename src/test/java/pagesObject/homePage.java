@@ -1,5 +1,6 @@
 package pagesObject;
 
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
@@ -181,6 +182,47 @@ public void trySearchFilterModel(String model) throws IOException {
 
     }
 
+
+    public void validateMakesModels() throws Exception {
+        this.waitForSecconds(2);
+        //Scroll to element
+        WebElement element = driver.findElement(new By.ByXPath("/html/body/div[2]/div[3]/div/app-root/div[1]/div/fragment[3]/div/div/div[2]/div[1]/div[3]/div/span[47]/div/div[2]/a"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
+        actions.perform();
+        //Get all the elements
+        List<WebElement> table = driver.findElements(new By.ByXPath("/html/body/div[2]/div[3]/div/app-root/div[1]/div/fragment[3]/div/div/div[2]/div[1]/div[3]/div/span/span/a"));
+
+        HashMap<String, String> make = new HashMap<String, String>();
+
+        for(WebElement e: table){
+            String link = e.getAttribute("href");
+            String carMake = e.getText();
+
+            make.put(carMake,link);
+
+            }
+
+        for (Map.Entry mapElement : make.entrySet())
+        {
+            this.waitForSecconds(10);
+            driver.get((String) mapElement.getValue());
+            this.waitForSecconds(2);
+            try {
+                driver.findElement(new By.ByXPath(" //*[@id=\"p-panel-7-content\"]/div/div/div/search-checkbox-filter/div/p-listbox/div/div[2]/ul/li/div[1]/div")).click();
+
+            }
+            catch(Exception e) {
+
+            }
+
+            String searchResultText = driver.findElement(new By.ByXPath("/html/body/div[2]/div[3]/div/app-root/vehicle-search-results/search-results/div/div[2]/div[2]/div[1]/div[1]/search-results-header/div/h3/span[2]")).getText();
+
+            Assert.assertTrue(searchResultText.contains((String)mapElement.getKey()));
+        }
+
+
+    }
 
 
 }
